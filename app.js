@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get('/',(req,res) => {
-res.send("My journalling Website")
+res.render('home.ejs')
 })
 
 app.get('/login',(req,res)=> {
@@ -41,7 +41,7 @@ app.post('/signup', async (req,res) =>{
         }
         // generate salt for bcrypt
         const salt = await bcrypt.genSalt(10);
-        
+
         // Hash the password using bcrypt and the generated salt
         const hashedPassword = await bcrypt.hash(password, salt)
 
