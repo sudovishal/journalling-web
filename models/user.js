@@ -2,24 +2,20 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     email : {
         type : String,
-        required : true
-    },
-    username : 
-    {
-        type : String,
+        required : true,
         unique : true,
-        required : [true,'cant be blank'],
-        match: [/^[a-zA-Z0-9]+$/, 'is invalid'], 
-        index: true
+        validate : {
+            validator : async function (value) {
+                const user = await this.constructor.findOne({email : value})
+                return !user;
+            },
+            message : 'Email already exists',
+        },
     },
     password : {
         type : String,
-        required : true
+        required : true,
+        minLength : 8
     }
     })
     module.exports = mongoose.model("User", userSchema)
-
-    /*
-    We need our usernames and emails to be unique between users so that users can't sign up with the same information. Mongoose doesn't have a built-in validation for unique fields,
-    but fortunately, we can use the mongoose-unique-validator plugin to get this functionality.
-    */
