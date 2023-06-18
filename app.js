@@ -4,8 +4,8 @@ const app = express();
 require('dotenv').config();
 
 // Import route files
-const loginRoute = require('./routes/login');
-const signupRoute = require('./routes/signup');
+const loginRoute = require('./routes/login.js');
+const signupRoute = require('./routes/signup.js');
 
 // Configure body-parser middleware
 app.use(express.urlencoded({ extended: true }));
