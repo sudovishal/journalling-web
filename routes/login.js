@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user.js');
+const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
 router.get('/', (req, res) => {
   res.render('login', { title: 'Login', error : null });
@@ -23,12 +25,13 @@ router.post('/', async (req,res) => {
         // if password is invalid, display an error message
         if (!isPasswordValid) {
             return res.render('login', { title: 'Login', error: 'Invalid email or password' });
-          }
-        res.send('Logged In!');
+        }
+        token = jwt.sign({id: user._id,email:user.email},process.env.ACCESS_TOKEN, {expiresIn: '30m'})
+        res.cookie('jwt',token, {httpOnly : true, secure : true});
+        res.redirect('/dashboard');
     } catch (error) {
         console.error(error);
         res.redirect('/login');
-        
     }
 })
 module.exports = router;

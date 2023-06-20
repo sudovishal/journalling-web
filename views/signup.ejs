@@ -10,9 +10,13 @@
     <form action="/signup" method="POST">
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required placeholder="Email">
-      <% if (error) { %>
-        <p class="error-message"><%= error %></p>
+      <% if (emailError) { %>
+        <p class="error-message"><%= emailError %></p>
         <% } %>
+
+        <% if (passError) { %>
+          <p class="error-message"><%= passError %></p>
+          <% } %>
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required>
       <button type="submit">Sign up</button>
