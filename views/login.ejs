@@ -1,28 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> Journalling | <%=title %></title>
-  <link rel="stylesheet" href="/styles.css">
+  <title> Journalling | <%= title %></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .error-message {
+      color: red;
+    }
+    .login-container {
+      width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    .links-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .links-container a {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required placeholder="Email">
-      <% if(error) { %>
-      <p class="error-message"><%= error %></p>
-      <% } %>
-      <label for="password">Enter your Password</label>
-      <input type="password" id="password" name="password"placeholder="Password" required>
-
-      <button type="submit">Log In</button>
-    </form>
-    
-    <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+    <div class="login-container">
+      <h1 class="text-center">Login</h1>
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="password">Enter your Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+        <% if (error) { %>
+          <p class="error-message"><%= error %></p>
+        <% } %>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
+      </form>
+      <div class="links-container">
+        <a href="/forgot-password" class="forgot-password">Forgot Password?</a>
+        <a href="/signup" class="signup-link">Don't have an account? Sign up</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
+
+
 
 <!-- The method attribute in the form tag specifies the HTTP method to be used when submitting the form data.
 In this case, it is set to "POST", which indicates that the form data should be sent as the payload of a POST request.

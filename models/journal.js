@@ -5,7 +5,7 @@ const journalSchema = new mongoose.Schema ({
         type : String,
         required : true
     },
-    description : {
+    summary : {
         type : String,
     },
     markdown : {
@@ -16,10 +16,14 @@ const journalSchema = new mongoose.Schema ({
       type : Date,
       default : Date.now()
 },
-updatedAt :  {
-    type : Date,
-    default : Date.now()
+    updatedAt :  {
+        type : Date,
+        default : Date.now()
+},
+    userId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User'
 }
-})
-
-module.exports = mongoose.model('Journal', journalSchema)
+},{timestamps : true});
+const Journal = mongoose.model('Journal', journalSchema)
+module.exports = Journal;

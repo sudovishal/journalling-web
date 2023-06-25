@@ -26,9 +26,9 @@ router.post('/', async (req,res) => {
         if (!isPasswordValid) {
             return res.render('login', { title: 'Login', error: 'Invalid email or password' });
         }
-        token = jwt.sign({id: user._id,email:user.email},process.env.ACCESS_TOKEN, {expiresIn: '30m'})
+        token = jwt.sign({id: user._id,email:user.email},process.env.ACCESS_TOKEN, {expiresIn: '1h'})
         res.cookie('jwt',token, {httpOnly : true, secure : true});
-        res.redirect('/dashboard');
+        res.redirect('/journals');
     } catch (error) {
         console.error(error);
         res.redirect('/login');

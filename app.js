@@ -5,8 +5,11 @@ const cookieParser = require('cookie-parser')
 // Import route files
 const loginRoute = require('./routes/login.js');
 const signupRoute = require('./routes/signup.js');
-const protectedRoute = require('./routes/dashboard.js')
 const logoutRoute = require('./routes/logout.js');
+const journalRoute = require('./routes/journals.js')
+const createJournalRoute = require('./routes/create-journal.js');
+const authenticateToken = require('./auth.js');
+
 // Configure body-parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -31,6 +34,7 @@ app.use('/signup', signupRoute);
 app.get('/forgot-password', (req, res) => {
   res.render('forgotpassword');
 });
+app.use('/journals',authenticateToken, journalRoute);
+app.use('/journals/new', authenticateToken, createJournalRoute)
 app.use('/',logoutRoute)
-app.use('/dashboard',protectedRoute);
 app.listen(3000);
