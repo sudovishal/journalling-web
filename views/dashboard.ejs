@@ -38,9 +38,11 @@
              Updated At : <%= journal.updatedAt.toLocaleString() %>
             </div>
             <div class="card-text mb-2"><%= journal.summary %></div>
-            <a href="journals/<%= journal.id %>" class="btn btn-primary">Read More</a>
+            <a href="journals/<%= journal.slug %>" class="btn btn-primary">Read More</a>
             <a href="journals/" class="btn btn-info">Edit</a>
-            <button type="submit" class="btn btn-danger">Delete</button>
+            <form action="/journals/<%= journal.id %>?_method=DELETE" method="POST" class="d-inline">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
           </div>
         </div>
       <% }) %>

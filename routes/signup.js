@@ -29,7 +29,6 @@ router.post('/', async (req, res) => {
     const newUser = new User({ email, password: hashedPassword });
     await newUser.save();
     res.redirect('/login')
-    // res.send('Welcome to Journalling');
   } catch (error) {
     console.error(error);
     res.redirect('/signup');
