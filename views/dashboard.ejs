@@ -14,7 +14,7 @@
         <a class="nav-link" href="/logout">Logout</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/profile-change">Profile</a>
+        <a class="nav-link" href="/profile">Profile</a>
       </li>
     </ul>
   </nav>
@@ -39,7 +39,7 @@
             </div>
             <div class="card-text mb-2"><%= journal.summary %></div>
             <a href="journals/<%= journal.slug %>" class="btn btn-primary">Read More</a>
-            <a href="journals/" class="btn btn-info">Edit</a>
+            <a href="journals/edit/<%= journal.id %>" class="btn btn-info">Edit</a>
             <form action="/journals/<%= journal.id %>?_method=DELETE" method="POST" class="d-inline">
               <button type="submit" class="btn btn-danger">Delete</button>
             </form>

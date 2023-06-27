@@ -17,8 +17,14 @@
     <a href="/journals" class="btn btn-secondary">All Journals</a>
     <a href="/journals/edit/<%= journal.id %>" class="btn btn-info">Edit</a>
 
-    <div>
-      <%- journal.markdown %>
+    <div class="mt-4">
+      <h3>Journal Content:</h3>
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          <%- journal.markdown %>
+        </div>
+      </div>
     </div>
   </div>
 </body>

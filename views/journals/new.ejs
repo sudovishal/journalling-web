@@ -17,20 +17,7 @@
                 </div>
               <% } %>
             <form action="/journals/new" method="POST">
-              <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" required>
-              </div>
-              <div class="form-group">
-                <label for="summary">Summary</label>
-                <textarea class="form-control" id="summary" name="summary" rows="3" required></textarea>
-              </div>
-              <div class="form-group">
-                <label for="markdown">Markdown</label>
-                <textarea class="form-control" id="markdown" name="markdown" rows="10" required></textarea>
-              </div>
-              <a href="/journals" class="btn btn-secondary">Cancel</a>
-              <button type="submit" class="btn btn-primary">Save</button>
+              <%- include('_form_fields') %>
             </form>
           </div>
         </div>

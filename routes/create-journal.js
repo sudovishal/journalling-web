@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const Journal = require('../models/journal')
 
-router.get('/',(req,res) => {
+router.get('/new',(req,res) => {
     res.render('journals/new',{error : null});
 })
-
-router.post('/', async (req,res) => {
+router.post('/new', async (req,res) => {
     const {title, summary, markdown } = req.body;
     try {
         let journal = new Journal({

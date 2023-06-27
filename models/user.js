@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator')
 const userSchema = new mongoose.Schema({
     email : {
         type : String,
@@ -11,14 +12,14 @@ const userSchema = new mongoose.Schema({
             },
             message : 'Email already exists',
         },
+        validate: {
+            validator: (value) => validator.isEmail(value),
+            message: 'Invalid email format',
+          },
     },
     password : {
         type : String,
         required : true,
         },
-    // journals : [{
-    //         type : mongoose.Schema.Types.ObjectId,
-    //         ref : 'Journal'
-    //     }]
     })
     module.exports = mongoose.model("User", userSchema)

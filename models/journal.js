@@ -35,7 +35,19 @@ journalSchema.pre('validate',function(next) {
     if (this.title) {
         this.slug = slugify(this.title, { lower: true, strict: true })
       }
-      next();
+      
+      journalSchema.pre('findOneAndUpdate', async function (next) {
+        try {
+          const update = this.getUpdate();
+          if (update.title) {
+            const slug = slugify(update.title, { lower: true, strict: true });
+            this._update.slug = slug;
+        }
+        next();
+        } catch (error) {
+          next(error);
+        }
+      });
+      next();  
 })
-const Journal = mongoose.model('Journal', journalSchema)
-module.exports = Journal;
+module.exports = mongoose.model('Journal', journalSchema)
