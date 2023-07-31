@@ -14,6 +14,7 @@ const viewJournalRoute = require('./routes/view-journal.js')
 const deleteJournalRoute = require('./routes/delete-journal.js')
 const editJournalRoute = require('./routes/edit-journal.js')
 const profileChange = require('./routes/profile-change.js')
+const passwordReset = require('./routes/password-reset.js')
 // Configure body-parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -36,10 +37,9 @@ app.use('/login', loginRoute);
 // Mount the signup routes
 app.use('/signup', signupRoute);
 
-app.get('/forgot-password', (req, res) => {
-  res.render('forgotpassword');
-});
+
 app.use('/journals',authenticateToken, journalRoute);
+app.use('/forgot-password', passwordReset);
 app.use('/journals/', authenticateToken, createJournalRoute)
 app.use('/',logoutRoute)
 app.use('/journals', authenticateToken, viewJournalRoute)
