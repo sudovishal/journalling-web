@@ -24,7 +24,6 @@ mongoose.connect('mongodb://localhost:27017/journal');
 // Register view engine
 app.set('view engine', 'ejs');
 
-
 // app.use(express.static('public'));
 
 app.get('/', (req, res) => {
