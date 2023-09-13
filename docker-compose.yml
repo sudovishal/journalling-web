@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+# MongoDB service
+  mongo_db:
+    container_name: journal_cont
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
