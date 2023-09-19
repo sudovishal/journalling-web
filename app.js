@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 // Import route files
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser())
 app.use(methodOverride('_method'))
-mongoose.connect('mongodb://localhost:27017/journal');
+mongoose.connect(process.env.MONGODB_URI);
 // Register view engine
 app.set('view engine', 'ejs');
 
