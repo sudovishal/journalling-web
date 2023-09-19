@@ -12,15 +12,17 @@ services:
       - mongo_db:/data/db
 
 #  Node API Service
-api:
-  build: .
-  ports: 
-    - 4000:3000
-  environment:
-    ACCESS_TOKEN: "ffb69b6fafde0a1054a8d2107826fe3d5fe616c72af4b420be493c939587d5cb"
-    MONGODB_URI: mongodb://mongo_db:27017/journal
-  depends_on:
-    - mongo_db
+  api:
+    build: . 
+    ports: 
+      - 4000:3000
+    volumes:
+      - .:/usr/src/app
+    environment:
+      ACCESS_TOKEN: "ffb69b6fafde0a1054a8d2107826fe3d5fe616c72af4b420be493c939587d5cb"
+      MONGODB_URI: mongodb://mongo_db:27017/journal
+    depends_on:
+      - mongo_db
 
 volumes:
   mongo_db: {}
