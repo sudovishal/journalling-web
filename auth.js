@@ -20,7 +20,8 @@ const authenticateToken= (req,res,next) => {
   } else {
   // token is missing or not provided
   // If the token is missing or not provided: Status code 401 (Unauthorized) can be used. This indicates that the user is not authenticated and should be redirected to the login page.
-      res.status(401).redirect('/login')
+      // res.status(401).redirect('/login')
+      next();
   }
 }
 module.exports = authenticateToken
