@@ -43,6 +43,15 @@
             <form action="/journals/<%= journal.id %>?_method=DELETE" method="POST" class="d-inline">
               <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+
+            <!-- Form for changing visibility -->
+      <form action="/journals/<%= journal.slug %>/visibility" method="POST">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" name="isPublic" <%= journal.isPublic ? 'checked' : '' %>>
+          <label class="form-check-label" for="isPublic">Public</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Visibility</button>
+      </form>
           </div>
         </div>
       <% }) %>
