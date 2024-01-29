@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
 router.get('/', (req, res) => {
-  res.render('login', { title: 'Login', error : null });
+  res.render('login', { title: 'Login', error : null })
 });
 
 router.post('/', async (req,res) => {
