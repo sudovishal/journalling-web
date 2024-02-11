@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Journal = require('../models/journal')
+const Journal = require('../models/Journal.model')
 router.get('/', async (req,res) => {
   try {
     const userId = req.user.id;

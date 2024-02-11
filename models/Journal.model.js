@@ -20,14 +20,14 @@ const journalSchema = new mongoose.Schema ({
         type : Date,
         default : Date.now()
 },
-isPublic : {
-  type: Boolean,
-  default: false
+    isPublic : {
+        type: Boolean,
+        default: false
 },
     slug : {
-    type : String,
-    required : true,
-    unique : true
+        type : String,
+        required : true,
+        unique : true
 },
     userId : {
         type : mongoose.Schema.Types.ObjectId,

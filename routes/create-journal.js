@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Journal = require('../models/journal')
+const Journal = require('../models/Journal.model')
 
 router.get('/new',(req,res) => {
     res.render('journals/new',{error : null});

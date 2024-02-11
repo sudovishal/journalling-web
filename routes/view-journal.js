@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Journal = require('../models/journal')
+const Journal = require('../models/Journal.model')
 
 // Route for viewing a journal entry
 router.get('/:slug', async (req, res) => {

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { model } = require('mongoose');
-const Journal = require('../models/journal')
+const Journal = require('../models/Journal.model')
 router.post('/journals/:slug/visibility', async (req, res) => {
     try {
         const slug = req.params.slug;

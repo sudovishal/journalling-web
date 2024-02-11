@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const User = require('../models/user.js');
+const User = require('../models/User.model');
 
 router.get('/', (req, res) => {
   res.render('signup', { title: 'Sign Up', emailError: null, passError : null });

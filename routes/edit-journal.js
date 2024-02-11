@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Journal = require('../models/journal')
+const Journal = require('../models/Journal.model')
 const slugify = require('slugify')
 router.get('/edit/:id', async (req,res) => {
     try {
