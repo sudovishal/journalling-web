@@ -1,9 +1,17 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const bcrypt = require("bcrypt");
-const User = require("../models/User.model");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+import bcrypt from "bcrypt";
+import User from "../models/User.model.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
+// const express = require("express");
+// const router = express.Router();
+// const bcrypt = require("bcrypt");
+// const User = require("../models/User.model");
+// const jwt = require("jsonwebtoken");
+// require("dotenv").config();
 
 router.get("/", (req, res) =>
   res.render("login", { title: "Login", error: null })
@@ -32,7 +40,7 @@ router.post("/", async (req, res) => {
         error: "Invalid email or password",
       });
     }
-    token = jwt.sign(
+    const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.ACCESS_TOKEN,
       { expiresIn: "1h" }
@@ -44,4 +52,4 @@ router.post("/", async (req, res) => {
     res.redirect("/login");
   }
 });
-module.exports = router;
+export default router;

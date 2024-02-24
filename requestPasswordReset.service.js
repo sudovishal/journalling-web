@@ -1,11 +1,19 @@
-const User = require("./models/User.model.js");
-const Token = require("./models/Token.model.js");
-const crypto = require("crypto");
- const bcrypt = require("bcrypt");
- const sendEmail = require("./controllers/sendEmail.controller.js");
+
+import User from "./models/User.model.js";
+import Token from "./models/Token.model.js";
+import crypto from "crypto";
+import bcrypt from "bcrypt";
+import sendEmail from "./controllers/sendEmail.controller.js";
+import dotenv from "dotenv";
+dotenv.config();
+// const User = require("./models/User.model.js");
+// const Token = require("./models/Token.model.js");
+// const crypto = require("crypto");
+//  const bcrypt = require("bcrypt");
+//  const sendEmail = require("./controllers/sendEmail.controller.js");
  const clientURL = process.env.CLIENT_URL;
  
-const requestPasswordReset = async (email) => {
+export const requestPasswordReset = async (email) => {
   const user = await User.findOne({ email });
   if (!user) throw new Error("User does not exist");
 
@@ -40,4 +48,5 @@ const bcryptSalt =  await bcrypt.genSalt(10);
   return { link };
 };
 
-module.exports = requestPasswordReset;
+export default requestPasswordReset
+// module.exports = requestPasswordReset;

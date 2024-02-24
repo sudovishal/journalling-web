@@ -1,30 +1,43 @@
-const express = require("express");
-
+import express from 'express';
 const app = express();
-const connectDB = require("./db");
-require("dotenv").config();
+import connectDB from './db.js';
+import dotenv from 'dotenv';
+dotenv.config();
 const port = process.env.PORT || 3000;
-const cookieParser = require("cookie-parser");
-const methodOverride = require("method-override");
-// Import route files
-const loginRoute = require("./routes/login.js");
-const signupRoute = require("./routes/signup.js");
-const logoutRoute = require("./routes/logout.js");
-const journalRoute = require("./routes/journals.js");
-const authenticateToken = require("./auth.js");
-const createJournalRoute = require("./routes/create-journal.js");
-const viewJournalRoute = require("./routes/view-journal.js");
-const deleteJournalRoute = require("./routes/delete-journal.js");
-const editJournalRoute = require("./routes/edit-journal.js");
-const profileChange = require("./routes/profile-change.js");
-const passwordResetRoute = require("./routes/password-reset.js");
-const shareableLink = require("./routes/public-link");
+import cookieParser from 'cookie-parser';
+import methodOverride from 'method-override';
+
+// import route files
+import loginRoute from './routes/login.js';
+import signupRoute from './routes/signup.js';
+import logoutRoute from './routes/logout.js';
+import journalRoute from './routes/journals.js';
+import authenticateToken from './auth.js';
+import createJournalRoute from './routes/create-journal.js';
+import viewJournalRoute from './routes/view-journal.js';
+import deleteJournalRoute from './routes/delete-journal.js';
+import editJournalRoute from './routes/edit-journal.js';
+import profileChange from './routes/profile-change.js';
+import passwordResetRoute from './routes/password-reset.js';
+import shareableLink from './routes/public-link.js';
+// const journalRoute = require("./routes/journals.js");
+// const authenticateToken = require("./auth.js");
+// const createJournalRoute = require("./routes/create-journal.js");
+// const viewJournalRoute = require("./routes/view-journal.js");
+// const deleteJournalRoute = require("./routes/delete-journal.js");
+// const editJournalRoute = require("./routes/edit-journal.js");
+// const profileChange = require("./routes/profile-change.js");
+// const passwordResetRoute = require("./routes/password-reset.js");
+// const shareableLink = require("./routes/public-link");
+
 // Configure body-parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride("_method"));
-connectDB();
+
+connectDB(); // Database connection
+
 // Register view engine
 app.set("view engine", "ejs");
 app.set("template", "./template");

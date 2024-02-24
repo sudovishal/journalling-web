@@ -1,5 +1,7 @@
-const mongoose =  require('mongoose')
-const slugify = require('slugify')
+// const mongoose =  require('mongoose')
+import slugify from 'slugify'
+import mongoose from 'mongoose'
+// const slugify = require('slugify')
 const journalSchema = new mongoose.Schema ({
     title : {
         type : String,
@@ -54,4 +56,6 @@ journalSchema.pre('validate',function(next) {
       });
       next();  
 })
-module.exports = mongoose.model('Journal', journalSchema)
+const Journal = mongoose.model('Journal', journalSchema)
+export default Journal;
+// export default Journal = mongoose.model('Journal', journalSchema)

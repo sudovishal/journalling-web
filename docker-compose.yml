@@ -19,7 +19,7 @@ services:
     volumes:
       - .:/usr/src/app
     environment:
-      ACCESS_TOKEN: "ffb69b6fafde0a1054a8d2107826fe3d5fe616c72af4b420be493c939587d5cb"
+      ACCESS_TOKEN: ${ACCESS_TOKEN}
       MONGODB_URI: mongodb://mongo_db:27017/journal
     depends_on:
       - mongo_db

@@ -1,6 +1,10 @@
-const router = require('express').Router();
-const { model } = require('mongoose');
-const Journal = require('../models/Journal.model')
+import express from 'express';
+const router = express.Router();
+import Journal from '../models/Journal.model.js';
+import { model } from 'mongoose';
+// const { model } = require('mongoose');
+// const Journal = require('../models/Journal.model')
+
 router.put('/journals/:slug/toggle-public', async (req, res) => {
     try {
         const slug = req.params.slug;
@@ -20,4 +24,6 @@ router.put('/journals/:slug/toggle-public', async (req, res) => {
         res.status(500).send('Internal Server Error')
     }
     });
-module.exports = router
+
+export default router;
+// module.exports = router

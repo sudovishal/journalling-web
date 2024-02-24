@@ -1,10 +1,12 @@
-const {resetPasswordRequestController, resetPasswordController } = require('../controllers/requestResetPassword.controller');
-
-const router = require("express").Router();
+// const {resetPasswordRequestController, resetPasswordController } = require('../controllers/requestResetPassword.controller');
+import { resetPasswordRequestController, resetPasswordController } from "../controllers/requestResetPassword.controller.js";
+// const router = require("express").Router();
+import express from 'express';
+const router = express.Router();
 router.post("/requestResetPassword", resetPasswordRequestController);
 router.post("/password-reset", resetPasswordController);
 
 router.get("/reset-password", (req, res) => {
   res.render("reset-password");
 });
-module.exports = router;
+export default router;

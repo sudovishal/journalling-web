@@ -1,7 +1,9 @@
-const requestPasswordReset = require("../requestPasswordReset.service");
-const resetPassword = require("../resetPassword.service");
+import { requestPasswordReset } from "../requestPasswordReset.service.js";
+// const requestPasswordReset = require("");
+import { resetPassword } from "../resetPassword.service.js";
+// const resetPassword = require("../resetPassword.service");
 
-const resetPasswordRequestController = async (req, res) => {
+export const resetPasswordRequestController = async (req, res) => {
   const requestPasswordResetService = await requestPasswordReset(
     req.body.email
   );
@@ -9,7 +11,7 @@ const resetPasswordRequestController = async (req, res) => {
 
 };
 
-const resetPasswordController = async (req, res, next) => {
+export const resetPasswordController = async (req, res, next) => {
   const resetPasswordService = await resetPassword(
     req.body._id,
     req.body.token,
@@ -18,4 +20,5 @@ const resetPasswordController = async (req, res, next) => {
   return res.json(resetPasswordService);
 };
 
-module.exports = { resetPasswordRequestController, resetPasswordController };
+// module.exports = { resetPasswordRequestController, resetPasswordController };
+// export default { resetPasswordRequestController, resetPasswordController };

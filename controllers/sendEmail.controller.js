@@ -1,7 +1,10 @@
-const nodemailer = require("nodemailer");
-const ejs = require("ejs");
-// const fs = require("fs");
-const path = require("path");
+import nodemailer from "nodemailer";
+import ejs from "ejs";
+import path from "path";
+// const nodemailer = require("nodemailer");
+// const ejs = require("ejs");
+// // const fs = require("fs");
+// const path = require("path");
 
 const sendEmail = async (email, subject, payload, template, clientURL) => {
   try {
@@ -41,4 +44,5 @@ const sendEmail = async (email, subject, payload, template, clientURL) => {
     return error;
   }
 };
-module.exports = sendEmail;
+export default sendEmail;
+// module.exports = sendEmail;

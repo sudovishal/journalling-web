@@ -1,7 +1,12 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const User = require('../models/User.model');
+import bcrypt from 'bcrypt';
+import User from '../models/User.model.js';
+
+// const express = require('express');
+// const router = express.Router();
+// const bcrypt = require('bcrypt');
+// const User = require('../models/User.model');
 
 router.get('/', (req, res) => {
   res.render('signup', { title: 'Sign Up', emailError: null, passError : null });
@@ -35,4 +40,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

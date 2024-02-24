@@ -1,5 +1,6 @@
-const router = require('express').Router();
-
+// const router = require('express').Router();
+import express from 'express';
+const router = express.Router();
 router.get('/logout',(req,res) =>{
     res.cookie('jwt','',{maxAge : 1})
     // you cannot delete cookies from server-side directly,
@@ -8,4 +9,4 @@ router.get('/logout',(req,res) =>{
     res.redirect('/');
 })
 
-module.exports = router;
+export default router;

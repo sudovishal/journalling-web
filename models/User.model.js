@@ -1,10 +1,13 @@
-const mongoose = require('mongoose');
-const validator = require('validator')
+import mongoose from 'mongoose';
+import validator from 'validator';
+// const mongoose = require('mongoose');
+// const validator = require('validator')
 const userSchema = new mongoose.Schema({
     email : {
         type : String,
         required : true,
         unique : true,
+        lowercase : true,
         validate : {
             validator : async function (value) {
                 const user = await this.constructor.findOne({email : value})
@@ -22,4 +25,6 @@ const userSchema = new mongoose.Schema({
         required : true,
         },
     })
-    module.exports = mongoose.model("User", userSchema)
+const User = mongoose.model("User", userSchema)
+export default User;
+    // export default User = mongoose.model("User", userSchema)

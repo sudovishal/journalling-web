@@ -1,5 +1,8 @@
-const router = require('express').Router();
-const Journal = require('../models/Journal.model')
+import express from 'express';
+const router = express.Router();
+import Journal from '../models/Journal.model.js';
+// const router = require('express').Router();
+// const Journal = require('../models/Journal.model')
 router.get('/', async (req,res) => {
   try {
     const userId = req.user.id;
@@ -10,4 +13,4 @@ router.get('/', async (req,res) => {
    res.render('error',{error : error}) 
   }
   })
-module.exports = router;
+export default router;
