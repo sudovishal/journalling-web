@@ -1,6 +1,8 @@
+const sendEmail = require("./controllers/sendEmail.controller.js");
 const Token = require("./models/Token.model.js");
 const User = require("./models/User.model.js");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+
 const resetPassword = async (userId, token, password) => {
   let passwordResetToken = await Token.findOne({ userId });
 
@@ -22,10 +24,17 @@ const resetPassword = async (userId, token, password) => {
   );
 
   const user = await User.findById({ _id: userId });
-
-  await passwordResetToken.deleteOne();
+sendEmail(
+  user.email,
+  "Password Reset Successfully",
+  {
+    name: user.email,
+  },
+  "../template/resetPassword.ejs"
+)
+await passwordResetToken.deleteOne();
 
   return { message: "Password reset was successful" };
 };
 
-module.exports = resetPassword
+module.exports = resetPassword;

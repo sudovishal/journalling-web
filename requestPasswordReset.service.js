@@ -10,10 +10,11 @@ const requestPasswordReset = async (email) => {
   if (!user) throw new Error("User does not exist");
 
   let token = await Token.findOne({ userId: user._id });
+  
   if (token) {
     await token.deleteOne();
   }
-  let resetToken = crypto.randomBytes(32).toString("hex");
+  let resetToken = crypto.randomBytes(32).toString("hex")
 const bcryptSalt =  await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(resetToken, Number(bcryptSalt));
 
@@ -23,16 +24,16 @@ const bcryptSalt =  await bcrypt.genSalt(10);
     createdAt: Date.now(),
   }).save();
 
-  const link = `${clientURL}/passwordReset?token=${resetToken}&id=${user._id}`;
+  const link = `${clientURL}/password-reset?token=${encodeURIComponent(resetToken)}&id=${encodeURIComponent(user._id)}`;
   sendEmail(
     user.email,
     "Password Reset Request",
     {
       name: user.email,
-      user: user.id,
+      userId: encodeURIComponent(user.id),
       link: link,
       clientURL: clientURL,
-      resetToken: token,
+      resetToken: resetToken,
     },
     "../template/requestPasswordReset.ejs",
   );

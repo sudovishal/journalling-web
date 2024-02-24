@@ -1,63 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dashboard</title>
-  <!-- Include Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <head>
+    <title>Dashboard</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
-<body>
+  <script
+    src="https://unpkg.com/htmx.org@1.9.10"
+    integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+    crossorigin="anonymous"
+  ></script>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Home</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+      </ul>
+    </nav>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Home</a>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
-      </li>
-    </ul>
-  </nav>
+    <div class="container">
+      <h1 class="mb-3">Welcome to Journaling!</h1>
+      <a href="/journals/new" class="btn btn-success">New Journal</a>
 
-  <div class="container">
-    <h1 class="mb-3">Welcome to Journaling!</h1>
-    <a href="/journals/new" class="btn btn-success">New Journal</a>
-
-    <% if (journals.length === 0) { %>
-      <div class="alert alert-info mt-4" role="alert" hx-trigger="htmx:afterRequest">
+      <% if (journals.length === 0) { %>
+      <div
+        class="alert alert-info mt-4"
+        role="alert"
+        hx-trigger="htmx:afterRequest"
+      >
         You have no journals yet.
       </div>
-    <% } else { %>
-      <% journals.forEach(journal => { %>
-        <div class="card mt-4">
-          <div class="card-body">
-            <h4 class="card-title"><%= journal.title %></h4>
-            <div class="card-subtitle text-muted mb-2">
-             Created At : <%= journal.createdAt.toLocaleString() %>
-             Updated At : <%= journal.updatedAt.toLocaleString() %>
-            </div>
-            <div class="card-text mb-2"><%= journal.summary %></div>
-            <a href="journals/<%= journal.slug %>" class="btn btn-primary">Read More</a>
-            <a href="journals/edit/<%= journal.id %>" class="btn btn-info">Edit</a>
-            <button hx-delete="/journals/<%= journal.id %>" hx-trigger= "click" hx-target="closest .card" hx-swap="outerHTML" class="btn btn-danger">Delete</button>
-          
-            <!-- </form> -->
-            <!-- Form for changing visibility -->
-      <form action="/journals/<%= journal.slug %>/visibility" method="POST">
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" name="isPublic" <%= journal.isPublic ? 'checked' : '' %>>
-          <label class="form-check-label" for="isPublic">Public</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Update Visibility</button>
-      </form>
+      <% } else { %> <% journals.forEach(journal => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4 class="card-title"><%= journal.title %></h4>
+          <div class="card-subtitle text-muted mb-2">
+            Created At : <%= journal.createdAt.toLocaleString() %> Updated At :
+            <%= journal.updatedAt.toLocaleString() %>
           </div>
+          <div class="card-text mb-2"><%= journal.summary %></div>
+          <a href="journals/<%= journal.slug %>" class="btn btn-primary"
+            >Read More</a
+          >
+          <a href="journals/edit/<%= journal.id %>" class="btn btn-info"
+            >Edit</a
+          >
+          <button
+            hx-delete="/journals/<%= journal.id %>"
+            hx-trigger="click"
+            hx-target="closest .card"
+            hx-swap="outerHTML"
+            class="btn btn-danger"
+          >
+            Delete
+          </button>
+
+         
         </div>
-      <% }) %>
-      <% } %>
+      </div>
+      <% }) %> <% } %>
     </div>
-    
-</body>
+  </body>
 </html>

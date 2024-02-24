@@ -1,12 +1,12 @@
 const requestPasswordReset = require("../requestPasswordReset.service");
 const resetPassword = require("../resetPassword.service");
 
-const resetPasswordRequestController = async (req, res, next) => {
+const resetPasswordRequestController = async (req, res) => {
   const requestPasswordResetService = await requestPasswordReset(
     req.body.email
   );
   return res.json(requestPasswordResetService);
-  //   next()
+
 };
 
 const resetPasswordController = async (req, res, next) => {

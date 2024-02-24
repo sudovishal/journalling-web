@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const ejs = require("ejs");
-const fs = require("fs");
+// const fs = require("fs");
 const path = require("path");
 
 const sendEmail = async (email, subject, payload, template, clientURL) => {
@@ -14,26 +14,19 @@ const sendEmail = async (email, subject, payload, template, clientURL) => {
       },
     });
 
-    payload.clientURL = clientURL;
-
     let options = {};
-    ejs.renderFile(
-          path.join(__dirname, template),
-          payload,
-          {}, 
-          (err, str) => {
-            if (err) {
-              console.log(err);
-            } else {
-              options = {
-                from: process.env.FROM_EMAIL,
-                to: email,
-                subject: subject,
-                html: str,
-              };
-            }
-          }
-      );
+    ejs.renderFile(path.join(__dirname, template), payload, {}, (err, str) => {
+      if (err) {
+        console.log(err);
+      } else {
+        options = {
+          from: process.env.FROM_EMAIL,
+          to: email,
+          subject: subject,
+          html: str,
+        };
+      }
+    });
 
     transporter.sendMail(options, (error, info) => {
       if (error) {
@@ -48,5 +41,4 @@ const sendEmail = async (email, subject, payload, template, clientURL) => {
     return error;
   }
 };
-
 module.exports = sendEmail;
