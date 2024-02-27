@@ -3,15 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 const router = express.Router();
-// const jwt = require("jsonwebtoken");
-// require("dotenv").config();
-// const router = require("express").Router();
-
 const port = process.env.PORT || 3000;
 
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.jwt;
-
   // check json exists and is verified
   if (token) {
     jwt.verify(token, process.env.ACCESS_TOKEN, (err, decodedToken) => {
@@ -33,4 +28,4 @@ const authenticateToken = (req, res, next) => {
   }
 };
 export default authenticateToken;
-// module.exports = authenticateToken;
+

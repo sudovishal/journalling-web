@@ -1,7 +1,6 @@
-// const mongoose =  require('mongoose')
 import slugify from 'slugify'
 import mongoose from 'mongoose'
-// const slugify = require('slugify')
+
 const journalSchema = new mongoose.Schema ({
     title : {
         type : String,

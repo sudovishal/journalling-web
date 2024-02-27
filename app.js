@@ -20,15 +20,6 @@ import editJournalRoute from './routes/edit-journal.js';
 import profileChange from './routes/profile-change.js';
 import passwordResetRoute from './routes/password-reset.js';
 import shareableLink from './routes/public-link.js';
-// const journalRoute = require("./routes/journals.js");
-// const authenticateToken = require("./auth.js");
-// const createJournalRoute = require("./routes/create-journal.js");
-// const viewJournalRoute = require("./routes/view-journal.js");
-// const deleteJournalRoute = require("./routes/delete-journal.js");
-// const editJournalRoute = require("./routes/edit-journal.js");
-// const profileChange = require("./routes/profile-change.js");
-// const passwordResetRoute = require("./routes/password-reset.js");
-// const shareableLink = require("./routes/public-link");
 
 // Configure body-parser middleware
 app.use(express.urlencoded({ extended: true }));

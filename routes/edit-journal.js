@@ -2,9 +2,7 @@ import express from 'express';
 const router = express.Router();
 import Journal from '../models/Journal.model.js';
 import slugify from 'slugify';
-// // const router = require('express').Router();
-// const Journal = require('../models/Journal.model')
-// const slugify = require('slugify')
+
 router.get('/edit/:id', async (req,res) => {
     try {
         const journal = await Journal.findById(req.params.id)

@@ -1,7 +1,5 @@
-// const router = require('express')
 import express from 'express';
 import Journal from '../models/Journal.model.js';
-// const Journal = require('../models/Journal.model')
 const router = express.Router();
 router.delete('/:id', async (req, res) => {
     try {
@@ -13,4 +11,3 @@ router.delete('/:id', async (req, res) => {
     }
 })
 export default router;
-// module.exports = router;

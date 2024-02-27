@@ -6,13 +6,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-// const express = require("express");
-// const router = express.Router();
-// const bcrypt = require("bcrypt");
-// const User = require("../models/User.model");
-// const jwt = require("jsonwebtoken");
-// require("dotenv").config();
-
 router.get("/", (req, res) =>
   res.render("login", { title: "Login", error: null })
 );

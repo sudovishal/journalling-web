@@ -1,4 +1,3 @@
-// const {resetPasswordRequestController, resetPasswordController } = require('../controllers/requestResetPassword.controller');
 import { resetPasswordRequestController, resetPasswordController } from "../controllers/requestResetPassword.controller.js";
 // const router = require("express").Router();
 import express from 'express';
