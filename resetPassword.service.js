@@ -1,15 +1,15 @@
-import sendEmail from "./controllers/sendEmail.controller.js";
-import Token from "./models/Token.model.js";
-import User from "./models/User.model.js";
-import bcrypt from "bcrypt";
+const sendEmail = require("./utils/sendEmail.js");
+const Token = require("./models/Token.model.js");
+const User = require("./models/User.model.js");
+const bcrypt = require("bcrypt");
 
-export const resetPassword = async (userId, token, password) => {
+const resetPassword = async (userId, token, password) => {
   let passwordResetToken = await Token.findOne({ userId });
 
   if (!passwordResetToken) {
     throw new Error("Invalid or expired password reset token");
   }
-  console.log(passwordResetToken.token, token);
+  // console.log(passwordResetToken.token, token); 
 
   const isValid = await bcrypt.compare(token, passwordResetToken.token);
   if (!isValid) throw new Error("Invalid or expired password reset token");
@@ -24,17 +24,17 @@ export const resetPassword = async (userId, token, password) => {
   );
 
   const user = await User.findById({ _id: userId });
-sendEmail(
-  user.email,
-  "Password Reset Successfully",
-  {
-    name: user.email,
-  },
-  "../template/resetPassword.ejs"
-)
-await passwordResetToken.deleteOne();
+  sendEmail(
+    user.email,
+    "Password Reset Successfully",
+    {
+      name: user.email,
+    },
+    "../template/resetPassword.ejs"
+  );
+  await passwordResetToken.deleteOne();
 
   return { message: "Password reset was successful" };
 };
-export default resetPassword;
 
+module.exports = resetPassword;

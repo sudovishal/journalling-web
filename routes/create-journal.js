@@ -1,8 +1,6 @@
-// const router = require("express").Router();
-// const Journal = require("../models/Journal.model");
-import Journal from "../models/Journal.model.js";
-import express from "express";
-const router = express.Router();
+const router = require("express").Router();
+const Journal = require("../models/Journal.model");
+
 router.get("/new", (req, res) => res.render("journals/new", { error: null }));
 
 router.post("/new", async (req, res) => {
@@ -27,5 +25,5 @@ router.post("/new", async (req, res) => {
     res.render("journals/new", { error: "Failed to create a journal entry" });
   }
 });
-export default router;
-// module.exports = router;
+
+module.exports = router;

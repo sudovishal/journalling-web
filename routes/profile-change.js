@@ -1,10 +1,6 @@
-import express from "express";
-const router = express.Router();
-import User from "../models/User.model.js";
-import validator from "validator";
-// const router = require("express").Router();
-// const User = require("../models/User.model");
-// const validator = require("validator");
+const router = require("express").Router();
+const User = require("../models/User.model");
+const validator = require("validator");
 
 router.get("/profile", (req, res) => {
   res.render("profile-change", { emailError: null });
@@ -49,4 +45,4 @@ router.post("/profile", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

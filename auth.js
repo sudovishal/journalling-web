@@ -1,9 +1,8 @@
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-dotenv.config();
-import express from "express";
-const router = express.Router();
-const port = process.env.PORT || 3000;
+// const router = require("express").Router();
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+// const port = process.env.PORT || 3000;
+
 
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -27,5 +26,4 @@ const authenticateToken = (req, res, next) => {
     next();
   }
 };
-export default authenticateToken;
-
+module.exports = authenticateToken;

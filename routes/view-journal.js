@@ -1,8 +1,5 @@
-import express from "express";
-const router = express.Router();
-import Journal from "../models/Journal.model.js";
-// const router = require("express").Router();
-// const Journal = require("../models/Journal.model");
+const router = require("express").Router();
+const Journal = require("../models/Journal.model");
 
 // Route for viewing a journal entry
 router.get("/:slug", async (req, res) => {
@@ -36,5 +33,4 @@ router.get("/:slug", async (req, res) => {
   }
 });
 
-export default router;
-//   module.exports = router;
+  module.exports = router;

@@ -1,10 +1,7 @@
-import nodemailer from "nodemailer";
-import ejs from "ejs";
-import path from "path";
-// const nodemailer = require("nodemailer");
-// const ejs = require("ejs");
-// // const fs = require("fs");
-// const path = require("path");
+const nodemailer = require("nodemailer");
+const ejs = require("ejs");
+// const fs = require("fs");
+const path = require("path");
 
 const sendEmail = async (email, subject, payload, template, clientURL) => {
   try {
@@ -30,7 +27,6 @@ const sendEmail = async (email, subject, payload, template, clientURL) => {
         };
       }
     });
-
     transporter.sendMail(options, (error, info) => {
       if (error) {
         return error;
@@ -44,5 +40,5 @@ const sendEmail = async (email, subject, payload, template, clientURL) => {
     return error;
   }
 };
-export default sendEmail;
-// module.exports = sendEmail;
+
+module.exports = sendEmail;

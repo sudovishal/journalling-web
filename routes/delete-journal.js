@@ -1,6 +1,6 @@
-import express from 'express';
-import Journal from '../models/Journal.model.js';
-const router = express.Router();
+const router = require('express').Router();
+const Journal = require('../models/Journal.model')
+
 router.delete('/:id', async (req, res) => {
     try {
     await Journal.findByIdAndDelete(req.params.id)
@@ -10,4 +10,5 @@ router.delete('/:id', async (req, res) => {
         res.status(500)
     }
 })
-export default router;
+
+module.exports = router;
