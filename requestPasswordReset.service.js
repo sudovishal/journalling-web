@@ -19,16 +19,14 @@ const requestPasswordReset = async (email) => {
   let resetToken = crypto.randomBytes(32).toString("hex");
   const bcryptSalt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(resetToken, Number(bcryptSalt));
-
+console.log(resetToken, hash)
   await new Token({
     userId: user._id,
     token: hash,
     createdAt: Date.now(),
   }).save();
 
-  const link = `${clientURL}/password-reset?token=${encodeURIComponent(
-    resetToken
-  )}&id=${encodeURIComponent(user._id)}`;
+  const link = `${clientURL}/password-reset?token=${encodeURIComponent(resetToken)}&userId=${encodeURIComponent(user._id)}`;
   sendEmail(
     user.email,
     "Password Reset Request",
@@ -36,12 +34,13 @@ const requestPasswordReset = async (email) => {
       name: user.email,
       userId: encodeURIComponent(user.id),
       link: link,
-      clientURL: clientURL,
+      // clientURL: clientURL,
       resetToken: resetToken,
     },
     "../template/requestPasswordReset.ejs"
   );
-  return { link };
+  console.log(link)
+  return { success: true, message: "Password reset email sent successfully", link };
 };
 
 module.exports = requestPasswordReset;

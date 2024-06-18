@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
+
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
       validator: (value) => validator.isEmail(value),
       message: "Invalid email format",
     },
+    validate : {
+      validator: function (value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      },
+      message: 'Invalid email address format',
+    }
   },
   password: {
     type: String,

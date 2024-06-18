@@ -1,20 +1,37 @@
 const requestPasswordReset = require("../requestPasswordReset.service");
 const resetPassword = require("../resetPassword.service");
 
+
 const resetPasswordRequestController = async (req, res) => {
-  const requestPasswordResetService = await requestPasswordReset(
-    req.body.email
-  );
-  return res.json(requestPasswordResetService);
+  try {
+    const { success,  message} = await requestPasswordReset(req.body.email);
+    if( success) {
+      return res.render("request-reset-password", {success: message})
+    }
+  } catch (error) {
+    return res.render("request-reset-password", {
+      success: false,
+      message: error.message,
+    });
+  }
+  // const requestPasswordResetService = await requestPasswordReset(
+  //   req.body.email
+  // );
+  // return res.render(requestPasswordResetService);
 };
 
 const resetPasswordController = async (req, res, next) => {
-  const resetPasswordService = await resetPassword(
-    req.body._id,
-    req.body.token,
-    req.body.password
-  );
-  return res.json(resetPasswordService);
+  try {
+    const { userId, token} = req.body;
+    const { password } = req.body
+
+    console.log("userId:", userId);
+    console.log("token:", token);
+    const resetPasswordService = await resetPassword(userId, token, password);
+    return res.status(200).json(resetPasswordService);
+  } catch (error) {
+    res.status(400).json({success: false, message: error.message});
+  }
 };
 
 module.exports = { resetPasswordRequestController, resetPasswordController };

@@ -1,0 +1,3 @@
+When you submit a form traditionally (with a method="POST" attribute in the <form> tag), the browser sends the form data encoded as application/x-www-form-urlencoded or multipart/form-data, not as JSON. This can be problematic if your server expects JSON data.
+
+By using JavaScript to handle the form submission, you can format the data as JSON before sending it, ensuring that it matches the format expected by your server

@@ -2,34 +2,58 @@
 <html>
 <head>
   <title>Journalling | <%= title %></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <style>
-    .error-message {
+   .error-message {
       color: red;
     }
-    .signup-container {
-      width: 400px;
-      margin: 0 auto;
-      margin-top: 100px;
-      padding: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    .links-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 10px;
-    }
-    .links-container a {
-      margin-top: 10px;
+
+    body {
+      background-color: #2d2828; /* Set the background color to a dark shade */
+      color: #8b8484; /* Set the text color to a light shade */
     }
   </style>
 </head>
 <body>
+
   <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0">Sign Up</h4>
+          </div>
+          <div class="card-body">
+            <form action="/signup" method="POST">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                <% if (emailError) { %>
+                  <p class="error-message"><%= emailError %></p>
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                <% if (passError) { %>
+                  <p class="error-message"><%= passError %></p>
+                <% } %>
+              </div>
+              <button type="submit" class="btn btn-success mt-3">Sign Up</button>
+            </form>
+            <div class="mt-3 text-center">
+              <span class="text-muted">Already have an account?</span>
+              <a href="/login" class="text-primary ml-1">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container" class="bg-black-100">
     <div class="signup-container">
       <h1 class="text-center">Sign Up</h1>
       <form action="/signup" method="POST">
@@ -55,6 +79,6 @@
         <a href="/login" class="login-link">Already have an account? Login</a>
       </div>
     </div>
-  </div>
+  </div> -->
 </body>
 </html>

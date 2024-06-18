@@ -6,7 +6,7 @@ require("dotenv").config();
 const port = process.env.PORT || 3000;
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
-
+const bodyParser = require('body-parser');
 // import route files
 const loginRoute = require("./routes/login.js");
 const signupRoute = require("./routes/signup.js");
@@ -26,14 +26,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride("_method"));
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 connectDB(); // Database connection
 
 // Register view engine
 app.set("view engine", "ejs");
 app.set("template", "./template");
 
-// app.use(express.static('public'));
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
@@ -53,4 +53,5 @@ app.use("/journals", authenticateToken, editJournalRoute);
 app.use("/", authenticateToken, profileChange);
 app.use("/", passwordResetRoute);
 app.use("/", shareableLink);
+
 app.listen(port);

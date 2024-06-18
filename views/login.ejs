@@ -2,58 +2,58 @@
 <html>
 <head>
   <title> Journalling | <%= title %></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <style>
     .error-message {
       color: red;
     }
-    .login-container {
-      width: 400px;
-      margin: 0 auto;
-      margin-top: 100px;
-      padding: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+    body {
+      background-color: #2d2828; /* Set the background color to a dark shade */
+      color: #8b8484; /* Set the text color to a light shade */
     }
-    .links-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 10px;
-    }
-    .links-container a {
-      margin-top: 10px;
-    }
-  </style>
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="login-container">
-      <h1 class="text-center">Login</h1>
-      <form action="/login" method="POST">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0">Login</h4>
         </div>
-        <div class="form-group">
-          <label for="password">Enter your Password</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        <div class="card-body">
+          <form ="/login" method="post">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="formt-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            
+            </div>
+            <% if (error) { %>
+              <p class="error-message"><%= error %></p>
+            <% } %>
+            <button type="submit" class="btn btn-success btn-block mt-3">Log In</button>
+          </form>
+          <div class="mt-3 text-center">
+            <a href="/req-reset-password" class="text-muted">Forgot Password?</a>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-muted">Don't have an account?</span>
+            <a href="/signup" class="text-primary ml-1">Sign up</a>
+          </div>
         </div>
-        <% if (error) { %>
-          <p class="error-message"><%= error %></p>
-        <% } %>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Log In</button>
-        </div>
-      </form>
-      <div class="links-container">
-        <a href="/reset-password" class="forgot-password">Forgot Password?</a>
-        <a href="/signup" class="signup-link">Don't have an account? Sign up</a>
       </div>
     </div>
   </div>
+</div>
 </body>
 </html>
 <!-- The method attribute in the form tag specifies the HTTP method to be used when submitting the form data.
