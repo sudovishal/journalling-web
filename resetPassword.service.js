@@ -4,16 +4,13 @@ const User = require("./models/User.model.js");
 const bcrypt = require("bcrypt");
 
 const resetPassword = async (userId, token, password) => {
-  // const { userId, token } = req.query
-  // const { password } = req.body;
-  
-console.log(userId, token, password);
+  // console.log(userId, token, password);
   let passwordResetToken = await Token.findOne({ userId });
-console.log(userId, passwordResetToken);
+  // console.log(userId, passwordResetToken);
   if (!passwordResetToken) {
     throw new Error("Invalid or expired password reset token");
   }
-  console.log(passwordResetToken.token, token); 
+  // console.log(passwordResetToken.token, token);
 
   const isValid = await bcrypt.compare(token, passwordResetToken.token);
   if (!isValid) throw new Error("Invalid or expired password reset token");
